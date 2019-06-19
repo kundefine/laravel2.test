@@ -45,6 +45,54 @@
         left: 6px;
         top: -14px;
     }
+
+    .expand-category {
+        opacity: 0;
+    }
+
+    label.expand-button {
+        position: relative;
+    }
+
+    .expand-category ~ ul.parent {
+        height: 0;
+        opacity: 0;
+    }
+    ul.parent {
+        transition: all 500ms;
+    }
+    .expand-category:checked ~ ul.parent {
+        height: auto;
+        opacity: 1;
+    }
+
+    label.expand-button:before {
+        position: absolute;
+        content: '+';
+        left: -18px;
+        top: -5px;
+        font-weight: bold;
+        font-size: 19px;
+        color: firebrick;
+    }
+    .expand-category:checked + label.expand-button:before {
+        content: '-';
+    }
+    .expand-category:checked + label.expand-button {
+        background: #ddd;
+    }
+    .expand-category + label.expand-button {
+        background: initial;
+    }
+    label.expand-button.expand-button-plus:before {
+        content: '+';
+    }
+
+    label.expand-button.expand-button-minus:before {
+        content: '-';
+    }
+
+
 </style>
 <?php
 
@@ -63,3 +111,20 @@ echo '</div>';
 
 ?>
 
+<script src="{{asset('js/jquery.js')}}"></script>
+<script>
+
+$(document).ready(function(){
+
+    $('ul.parent li').each(function(index, li){
+
+        
+        if($(li).find('ul.parent').length) {
+            $(li).children('label').addClass('expand-button-plus');
+        } else {
+            $(li).children('label').addClass('expand-button-minus');
+        }
+    });
+})
+
+</script>

@@ -37,7 +37,7 @@ trait CategoryUi {
         static::$output .= "<ul class='parent'>";
         foreach ($categories as $category) {
             static::$output .= "<li class='child menu-id-{$category->id} child-{$child_label}'>";
-            static::$output .= '<input type="checkbox" name="categories[]" value="'. $category->id .'" >' . $category->name . " ({$category->slug})";
+            static::$output .= '<input id="'. $category->id .'" class="expand-category" type="checkbox" name="categories[]" value="'. $category->id .'" ><label class="expand-button" for="'.$category->id.'">' . $category->name . "</label> ({$category->slug})";
             static::$output .= "<input type='text' class='child_category_input_value'><button class='category_create_button' id='$category->id'>Create Child</button>";
             if(count($category->children)) {
                 $child_label++;
