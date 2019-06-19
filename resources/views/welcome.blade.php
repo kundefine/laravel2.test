@@ -14,17 +14,17 @@
 
     ul.parent li.child > ul.parent {
         padding-left: 20px;
+        position: relative;
     }
 
     ul.parent li.child > ul.parent li {
         position: relative;
     }
 
-    ul.parent li.child > ul.parent li:before,
-    ul.parent li.child > ul.parent li:after {
+    ul.parent li.child > ul.parent li:before {
         content: '';
         width: 15px;
-        height: 1px;
+        height: 0px;
         border-bottom: 1px dashed #000;
         position: absolute;
         left: 0;
@@ -34,13 +34,17 @@
         left: -12px;
         top: 8px;
     }
-    ul.parent li.child > ul.parent li:after{
-        transform: rotate(90deg);
-        left: -20px;
-        top: 1px;
+
+
+    ul.parent li.child > ul.parent:before {
+        position: absolute;
+        width: 0;
+        height: 100%;
+        content: '';
+        border-left: 1px dashed #000;
+        left: 6px;
+        top: -14px;
     }
-
-
 </style>
 <?php
 
